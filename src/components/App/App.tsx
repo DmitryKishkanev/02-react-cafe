@@ -1,12 +1,20 @@
 import css from 'components/App/App.module.css';
-import CafeInfo from '../Cofeinfo/CafeInfo';
-import { Votes } from 'types/votes';
+import CafeInfo from 'components/Cofeinfo/CafeInfo';
+// import type { Votes, VoteType } from 'types/votes';
+import VoteOptions from 'components/VoteOptions/VoteOptions';
+import VoteStats from 'components/VoteStats/VoteStats';
+import Notification from 'components/Notification/Notification';
 
-const votes: Votes = {
-  good: 0,
-  neutral: 0,
-  bad: 0,
-};
+// const votes: Votes = {
+//   good: 0,
+//   neutral: 0,
+//   bad: 0,
+// };
+
+// function handleVote(type: VoteType) {}
+
+// function resetVotes() {}
+
 export default function App() {
   return (
     <div className={css.app}>
@@ -14,6 +22,9 @@ export default function App() {
         title="Sip Happens Café"
         description=" Please rate our service by selecting one of the options below."
       />
+      <VoteOptions />
+      <VoteStats />
+      <Notification />
     </div>
     // <>
 
