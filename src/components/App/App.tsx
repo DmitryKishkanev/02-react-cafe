@@ -1,10 +1,19 @@
 import css from 'components/App/App.module.css';
 import CafeInfo from '../Cofeinfo/CafeInfo';
+import { Votes } from 'types/votes';
 
+const votes: Votes = {
+  good: 0,
+  neutral: 0,
+  bad: 0,
+};
 export default function App() {
   return (
     <div className={css.app}>
-      <CafeInfo />
+      <CafeInfo
+        title="Sip Happens Café"
+        description=" Please rate our service by selecting one of the options below."
+      />
     </div>
     // <>
 
