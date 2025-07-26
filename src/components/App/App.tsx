@@ -1,9 +1,18 @@
+import { useState } from 'react';
 import css from 'components/App/App.module.css';
 import CafeInfo from 'components/Cofeinfo/CafeInfo';
 // import type { Votes, VoteType } from 'types/votes';
 import VoteOptions from 'components/VoteOptions/VoteOptions';
 import VoteStats from 'components/VoteStats/VoteStats';
 import Notification from 'components/Notification/Notification';
+
+interface Votes {
+  good: number;
+  neutral: number;
+  bad: number;
+}
+
+const [votes. setVotes] = useState<Votes[]>;
 
 // const votes: Votes = {
 //   good: 0,
