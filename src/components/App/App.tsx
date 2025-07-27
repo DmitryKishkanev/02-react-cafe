@@ -1,54 +1,58 @@
 import { useState } from 'react';
-import css from 'components/App/App.module.css';
 import CafeInfo from 'components/Cofeinfo/CafeInfo';
-// import type { Votes, VoteType } from 'types/votes';
 import VoteOptions from 'components/VoteOptions/VoteOptions';
 import VoteStats from 'components/VoteStats/VoteStats';
 import Notification from 'components/Notification/Notification';
-
-interface Votes {
-  good: number;
-  neutral: number;
-  bad: number;
-}
-
-const [votes. setVotes] = useState<Votes[]>;
-
-// const votes: Votes = {
-//   good: 0,
-//   neutral: 0,
-//   bad: 0,
-// };
-
-// function handleVote(type: VoteType) {}
-
-// function resetVotes() {}
+import type { Votes, VoteType } from 'types/votes';
+import css from 'components/App/App.module.css';
 
 export default function App() {
+  const [votes, setVotes] = useState<Votes>({
+    good: 0,
+    neutral: 0,
+    bad: 0,
+  });
+
+  const handleVote = (type: VoteType) => {
+    setVotes(prevVotes => ({
+      ...prevVotes,
+      [type]: prevVotes[type] + 1,
+    }));
+  };
+
+  const resetVotes = () => {
+    setVotes({
+      good: 0,
+      neutral: 0,
+      bad: 0,
+    });
+  };
+
+  const varTotalVotes = votes.good + votes.neutral + votes.bad;
+  const varPositiveRate = varTotalVotes
+    ? Math.round((votes.good / varTotalVotes) * 100)
+    : 0;
+
   return (
     <div className={css.app}>
       <CafeInfo
         title="Sip Happens Café"
         description=" Please rate our service by selecting one of the options below."
       />
-      <VoteOptions />
-      <VoteStats />
-      <Notification />
+      <VoteOptions
+        onVote={handleVote}
+        onReset={resetVotes}
+        canReset={!!varTotalVotes}
+      />
+      {varTotalVotes ? (
+        <VoteStats
+          votes={votes}
+          totalVotes={varTotalVotes}
+          positiveRate={varPositiveRate}
+        />
+      ) : (
+        <Notification />
+      )}
     </div>
-    // <>
-
-    //   <h1>Products</h1>
-
-    //   <Product
-    //     name="Tacos With Lime"
-    //     imgUrl="https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg?w=640"
-    //     price={10.99}
-    //   />
-    //   <Product
-    //     name="Tacos With Lime"
-    //     imgUrl="https://images.pexels.com/photos/70497/pexels-photo-70497.jpeg?w=640"
-    //     price={14.29}
-    //   />
-    // </>
   );
 }
