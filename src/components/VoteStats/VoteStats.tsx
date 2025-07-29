@@ -1,5 +1,5 @@
 import type { Votes } from 'types/votes';
-import styles from 'components/VoteStats/VoteStats.module.css';
+import { Container, Stat } from 'components/VoteStats/VoteStats.styled';
 
 interface VoteStatsProps {
   votes: Votes;
@@ -13,22 +13,22 @@ export default function VoteStats({
   positiveRate,
 }: VoteStatsProps) {
   return (
-    <div className={styles.container}>
-      <p className={styles.stat}>
+    <Container>
+      <Stat>
         Good: <strong>{votes.good}</strong>
-      </p>
-      <p className={styles.stat}>
+      </Stat>
+      <Stat>
         Neutral: <strong>{votes.neutral}</strong>
-      </p>
-      <p className={styles.stat}>
+      </Stat>
+      <Stat>
         Bad: <strong>{votes.bad}</strong>
-      </p>
-      <p className={styles.stat}>
+      </Stat>
+      <Stat>
         Total: <strong>{totalVotes}</strong>
-      </p>
-      <p className={styles.stat}>
+      </Stat>
+      <Stat>
         Positive: <strong>{positiveRate}%</strong>
-      </p>
-    </div>
+      </Stat>
+    </Container>
   );
 }

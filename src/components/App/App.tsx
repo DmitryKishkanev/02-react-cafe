@@ -4,7 +4,7 @@ import VoteOptions from 'components/VoteOptions/VoteOptions';
 import VoteStats from 'components/VoteStats/VoteStats';
 import Notification from 'components/Notification/Notification';
 import type { Votes, VoteType } from 'types/votes';
-import css from 'components/App/App.module.css';
+import { Container } from 'components/App/App.styled';
 
 export default function App() {
   const [votes, setVotes] = useState<Votes>({
@@ -34,7 +34,7 @@ export default function App() {
     : 0;
 
   return (
-    <div className={css.app}>
+    <Container>
       <CafeInfo
         title="Sip Happens Café"
         description=" Please rate our service by selecting one of the options below."
@@ -53,6 +53,6 @@ export default function App() {
       ) : (
         <Notification />
       )}
-    </div>
+    </Container>
   );
 }

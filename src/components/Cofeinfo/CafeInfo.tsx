@@ -1,4 +1,8 @@
-import css from 'components/Cofeinfo/CafeInfo.module.css';
+import {
+  Container,
+  Title,
+  Description,
+} from 'components/Cofeinfo/CafeInfi.styled';
 
 interface CafeInfoProps {
   title: string;
@@ -7,9 +11,9 @@ interface CafeInfoProps {
 
 export default function CafeInfo({ title, description }: CafeInfoProps) {
   return (
-    <div className={css.container}>
-      <h1 className={css.title}>{title}</h1>
-      <p className={css.description}>{description}</p>
-    </div>
+    <Container>
+      <Title>{title}</Title>
+      <Description>{description}</Description>
+    </Container>
   );
 }
